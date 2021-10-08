@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
+import "./style.scss"
 ColorBox.propTypes = {
     
 };
@@ -12,11 +12,15 @@ function getRandomColor(){
 }
 
 function ColorBox() {
-    const [color,setColor] = useState('pink')
+    const [color,setColor] = useState(() => {
+        const initColor = localStorage.getItem('ColorBox') || 'aqua'
+        return initColor
+    })
 
     const handleSetColor = () => {
         const newColor = getRandomColor()
         setColor(newColor)
+        localStorage.setItem('ColorBox',newColor)
     }
 
     return (
@@ -25,8 +29,9 @@ function ColorBox() {
         style={{backgroundColor:color}}
         onClick = {() => handleSetColor()}
         >
-            Color Box
+            <p style={{color:'rebeccapurple'}}>Color Box</p>
         </div>
+        
     );
 }
 

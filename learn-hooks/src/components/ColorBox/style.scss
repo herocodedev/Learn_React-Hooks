@@ -1,0 +1,13 @@
+p {
+  color: red;
+}
+.color-box {
+  $box-size: 200px;
+
+  width: $box-size;
+  height: $box-size;
+  border-radius: 12px;
+  color: red;
+  transition: all linear 0.35s;
+  cursor: pointer;
+}
