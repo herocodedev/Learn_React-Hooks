@@ -6,6 +6,10 @@ import "./App.css";
 // import TodoList from "./components/TodoList";
 import PostList from "./components/PostList";
 import Pagination from "./components/Pagination";
+import PostFiltersForm from "./components/PostFiltersForm";
+import Clock from "./components/Clock";
+import BetterClock from "./components/BetterClock";
+import MagicBox from "./components/MagicBox";
 
 function App() {
   const [postList, setPostList] = useState([]);
@@ -24,6 +28,16 @@ function App() {
     setFilters({
       ...filters,
       _page: newPage,
+      title_like: "",
+    });
+  };
+
+  const handleFiltersChange = (newFilters) => {
+    console.log("New Filter", newFilters);
+    setFilters({
+      ...filters,
+      _page: 1,
+      title_like: newFilters.searchTerm,
     });
   };
   useEffect(() => {
@@ -50,11 +64,19 @@ function App() {
     console.log("TodoList effect");
   });
 
+  const [showClock, setShowClock] = useState(true);
+
   return (
     <div className="App">
+      <h1>React Hooks - Clock</h1>
+      {showClock && <Clock />}
+      <BetterClock />
+      <MagicBox />
+      <button onClick={() => setShowClock(false)}>Hide Clock</button>
       {/* <TodoList /> */}
+      {/* <PostFiltersForm onSubmit={handleFiltersChange} />
       <PostList posts={postList} />
-      <Pagination pagination={pagination} onPageChange={handlePageChange} />
+      <Pagination pagination={pagination} onPageChange={handlePageChange} /> */}
     </div>
   );
 }
